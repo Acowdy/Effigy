@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Effigy
+Comment=Effigy theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Effigy
+ButtonLayout=:minimize,maximize,close
