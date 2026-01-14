@@ -910,23 +910,12 @@ button {
 
     label { padding: 0; }
 
-    // the followind code is needed since we use a darker bottom border on buttons, which looks pretty
-    // bad with a 100% border radius (see https://bugzilla.gnome.org/show_bug.cgi?id=771205 for details),
-    // so on relevant states we an additional background-image with a gradient clipped on the border-box,
-    // so setting a transparent border would reveal it.
-
-    $_border_bg: linear-gradient(to top, $alt-borders-color 25%, $borders-color 50%);
-
     &:not(.flat):not(.osd):not(:checked):not(:active):not(:disabled):not(:backdrop) {
-      @include button(normal, $backimage: $_border_bg);
-
-      border-color: transparent;
+      @include button(normal);
     }
 
     &:hover:not(.osd):not(:checked):not(:active):not(:disabled):not(:backdrop) {
-      @include button(hover, $backimage: $_border_bg);
-
-      border-color: transparent;
+      @include button(hover);
     }
 
     background-origin: padding-box, border-box;
@@ -1573,7 +1562,7 @@ headerbar {
   min-height: $_headerbar_height;
   border-width: 0 0 1px;
   border-style: solid;
-  border-color: $alt_borders_color;
+  border-color: $borders_color;
   border-radius: 0;
 
   @include headerbar_fill(darken($bg_color, 10%));
