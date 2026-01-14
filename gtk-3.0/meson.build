@@ -29,3 +29,5 @@ foreach src : gtk3_scss_sources
     install_dir: gtk3_dir,
   )
 endforeach
+
+install_subdir('assets', install_dir : gtk3_dir, strip_directory : false)
