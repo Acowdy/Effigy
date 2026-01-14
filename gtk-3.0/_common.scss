@@ -1565,7 +1565,7 @@ headerbar {
   border-color: $borders_color;
   border-radius: 0;
 
-  @include headerbar_fill(darken($bg_color, 5%));
+  @include headerbar_fill($bg_color);
 
   &:backdrop {
     border-color: $backdrop_borders_color;
@@ -1588,18 +1588,6 @@ headerbar {
     padding-right: 12px;
 
     @extend .dim-label;
-  }
-
-  /* Darken switchbuttons for headerbars. issue #1588 */
-  stackswitcher button:checked,
-  button.toggle:checked {
-
-    background: if($variant == 'light', image(darken($bg_color, 17%)), image(darken($bg_color, 9%)));
-    border-color: darken($borders_color, 3%);
-    border-top-color: darken($borders_color, 8%);
-    &:backdrop {
-      @include button(backdrop-active);
-    }
   }
 
   .selection-mode &,

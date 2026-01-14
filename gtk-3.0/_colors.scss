@@ -54,7 +54,7 @@ $sidebar_bg_color: if($variant == 'light', $slate-100, $slate-700);
 $base_hover_color: transparentize($fg_color, 0.95);
 
 $tooltip_borders_color: transparentize(white, 0.9);
-$shadow_color: transparentize(black, 0.9);
+$shadow_color: if($variant == 'light', transparentize(black, 0.9), transparentize(black, 0.7));
 
 $drop_target_color: #4e9a06;
 

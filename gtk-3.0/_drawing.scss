@@ -186,7 +186,7 @@
   $_hilight_color: _button_hilight_color($c);
   $_button_edge: if($edge == none, none, _widget_edge($edge));
   $_blank_edge: if($edge == none, none, _widget_edge(transparentize($edge,1)));
-  $_button_shadow: 0 1px 2px transparentize($shadow_color, 0.03);
+  $_inset_shadow: inset 0 2px 4px $shadow_color;
 
   @if $t==normal {
   //
@@ -195,11 +195,11 @@
     color: $tc;
     outline-color: transparentize($tc, 0.7);
     border-color: if($c != $bg_color, _border_color($c), $borders_color);
-    background-image: if($variant == 'light', linear-gradient(to top, darken($c, 4%) 2px, $c),
-                                              linear-gradient(to top, darken($c,1%) 2px, $c)),
+    background-image: if($variant == 'light', linear-gradient(to top, $c, lighten($c, 6%)),
+                                              linear-gradient(to top, $c, lighten($c, 6%))),
                       $backimage;
     @include _button_text_shadow($tc, $c);
-    @include _shadows(inset 0 1px $_hilight_color, $_button_edge, $_button_shadow);
+    @include _shadows(inset 0 1px $_hilight_color, $_button_edge);
   }
 
   @else if $t==hover {
@@ -209,18 +209,11 @@
     color: $tc;
     outline-color: transparentize($tc, 0.7);
     border-color: if($c != $bg_color, _border_color($c), $borders_color);
-    @if $variant == 'light' {
-      background-image: linear-gradient(to top, $c, lighten($c, 1%) 1px),
-                        $backimage;
-      @include _button_text_shadow($tc, lighten($c, 6%));
-      @include _shadows(inset 0 1px _button_hilight_color(lighten($c, 6%)), $_button_edge, $_button_shadow);
-    }
-    @else {
-      background-image: linear-gradient(to top, darken($c,1%), lighten($c, 1%) 1px),
-                        $backimage;
-      @include _button_text_shadow($tc,lighten($c, 6%));
-      @include _shadows(inset 0 1px _button_hilight_color(darken($c, 2%)), $_button_edge, $_button_shadow);
-    }
+    background-image: if($variant == 'light', linear-gradient(to top, $c, lighten($c, 6%)),
+                                              linear-gradient(to top, $c, lighten($c, 6%))),
+                      $backimage;
+    @include _button_text_shadow($tc, $c);
+    @include _shadows(inset 0 1px $_hilight_color, $_button_edge);
   }
 
   @if $t==normal-alt {
@@ -234,12 +227,12 @@
     @if $variant == 'light' {
       background-image: linear-gradient(to bottom, lighten($c, 5%) 20%, $c 90%);
        @include _shadows(inset 0 1px _button_hilight_color(lighten($c, 6%)),
-                        $_button_edge, $_button_shadow);
+                        $_button_edge);
     }
     @else {
       background-image: linear-gradient(to bottom, darken($c, 3%) 20%, darken($c, 6%) 90%);
       @include _shadows(inset 0 1px $_hilight_color,
-                        $_button_edge, $_button_shadow);
+                        $_button_edge);
     }
   }
 
@@ -253,12 +246,12 @@
     @if $variant == 'light' {
       background-image: linear-gradient(to bottom, lighten($c, 9%) 10%, lighten($c, 4%) 90%);
       @include _shadows(inset 0 1px _button_hilight_color(lighten($c, 6%)),
-                        $_button_edge, $_button_shadow);
+                        $_button_edge);
     }
     @else {
       background-image: linear-gradient(to bottom, $c 20%, darken($c, 4%) 90%);
       @include _shadows(inset 0 1px $_hilight_color,
-                        $_button_edge, $_button_shadow);
+                        $_button_edge);
     }
   }
 
@@ -269,8 +262,9 @@
     color: $tc;
     outline-color: transparentize($tc, 0.7);
     border-color: if($c != $bg_color, _border_color($c), $borders_color);
-    background-image: if($variant == 'light', image(darken($c, 14%)), image(darken($c, 9%)));
-    @include _shadows(inset 0 1px transparentize($_hilight_color, 1), $_button_edge);
+    background-image: if($variant == 'light', linear-gradient(to top, darken($c, 8%), darken($c, 4%)),
+                                              linear-gradient(to top, darken($c, 8%), darken($c, 4%)));
+    @include _shadows(inset 0 1px transparentize($_hilight_color, 1), $_button_edge, $_inset_shadow);
 
     text-shadow: none;
     -gtk-icon-shadow: none;
